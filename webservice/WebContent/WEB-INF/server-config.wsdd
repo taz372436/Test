@@ -1,0 +1,102 @@
+<deployment xmlns="http://xml.apache.org/axis/wsdd/"
+	xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+	<handler type="java:org.apache.axis.handlers.http.URLMapper"
+		name="URLMapper" />
+	<!--  -->
+	<service name="demoServer" provider="java:RPC" style="wrapped" use="literal">
+	   <parameter name="wsdlTargetNamespace" value="http://cn.com.demoServer"/>  
+       <parameter name="wsdlServiceElement" value="exUmService"/>  
+       <parameter name="schemaQualified" value="http://cn.com.demoServer"/>  
+       <parameter name="wsdlServicePort" value="exUmServiceHttpPort"/>  
+       <parameter name="wsdlPortType" value="exUmServicePortType"/>  
+       <parameter name="typeMappingVersion" value="1.2"/>  
+	    
+		<parameter name="className" 
+		    value="com.demo.webservice.service.impl.AxisDemoWebserviceImp" />
+		
+		<operation name="testWebsServiceTwo" qname="operNS:testWebsServiceTwo" 
+		   xmlns:operNS="http://cn.com.demoServer" 
+		   returnQName="retNS:out" 
+		   xmlns:retNS="http://cn.com.demoServer" 
+		   returnType="rtns:ResponseBeanWS" 
+		   xmlns:rtns="http://cn.com.demoServer" soapAction="" >  
+		   
+          <parameter qname="pns:RequestBeanWS" xmlns:pns="http://cn.com.demoServer" 
+          type="tns:RequestBeanWS" xmlns:tns="http://cn.com.demoServer"/>  
+        </operation>
+<!--        -->
+<!--        <operation name="testWebsServiceOne" qname="operNS1:testWebsServiceOne" -->
+<!--		   xmlns:operNS="http://cn.com.demoServer" -->
+<!--		   returnQName="retNS1:out" -->
+<!--		   xmlns:retNS="http://cn.com.demoServer" -->
+<!--		   returnType="rtns1:ResponseBeanWS" -->
+<!--		   xmlns:rtns="http://cn.com.demoServer" soapAction="" >  -->
+<!--          <parameter qname="pns:RequestBeanWS" xmlns:pns="http://cn.com.demoServer" -->
+<!--          type="tns1:CxBBSlsRelaBean" xmlns:tns="http://cn.com.demoServer"/>  -->
+<!--        </operation>  -->
+        
+        
+	
+		<parameter name="allowedMethods" value="testWebsServiceTwo" />
+		<parameter name="scope" value="request" />
+<!--		-->
+<!--		<beanMapping languageSpecificType="java:com.demo.webservice.bean.CxBBSlsRelaBean" -->
+<!--		qname="ns:CxBBSlsRelaBean"-->
+<!--         xmlns:ns1="http://localhost:8080/webservice/services/CxBBSlsRelaInputServer"/>-->
+<!--        <beanMapping languageSpecificType="java:com.demo.webservice.bean.RequestBeanWS" -->
+<!--        qname="ns1:RequestBeanWS"-->
+<!--         xmlns:ns1="http://localhost:8080/webservice/services/CxBBSlsRelaInputServer"/>-->
+<!--        <beanMapping languageSpecificType="java:com.demo.webservice.bean.ResponseBeanWS" -->
+<!--        qname="ns2:ResponseBeanWS"-->
+<!--         xmlns:ns1="http://localhost:8080/webservice/services/CxBBSlsRelaInputServer"/>-->
+		
+		<typeMapping  
+        xmlns:ns="http://cn.com.demoServer"  
+        qname="ns:CxBBSlsRelaBean"  
+        type="java:com.demo.webservice.bean.CxBBSlsRelaBean"  
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"  
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"  
+        encodingStyle=""  
+      />
+      <typeMapping  
+        xmlns:ns="http://cn.com.demoServer"  
+        qname="ns:RequestBeanWS"  
+        type="java:com.demo.webservice.bean.RequestBeanWS"  
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"  
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"  
+        encodingStyle=""  
+      />  
+      <typeMapping  
+        xmlns:ns="http://cn.com.demoServer"  
+        qname="ns:ResponseBeanWS"  
+        type="java:com.demo.webservice.bean.ResponseBeanWS"  
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"  
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"  
+        encodingStyle=""  
+      />
+<!--      <arrayMapping  -->
+<!--        xmlns:ns="http://impl.webService.bbdh.ab.com"  -->
+<!--        qname="ns:ArrayOfString"  -->
+<!--        type="java:java.lang.String[]"  -->
+<!--        innerType="cmp-ns:string" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"  -->
+<!--        encodingStyle=""  -->
+<!--      />-->
+<!--      <arrayMapping  -->
+<!--        xmlns:ns="http://impl.webService.bbdh.ab.com"  -->
+<!--        qname="ns:ArrayOfCxBBSlsRelaBean"  -->
+<!--        type="com.demo.webservice.bean.CxBBSlsRelaBean[]"  -->
+<!--        innerType="cmp-ns:AccountInfo" xmlns:cmp-ns="http://impl.webService.bbdh.ab.com"  -->
+<!--        encodingStyle=""  -->
+<!--      />-->
+<!--       <namespace>http://localhost:8080/webservice/services/CxBBSlsRelaInputServer</namespace>-->
+	</service>
+	
+	
+	<transport name="http">
+		<requestFlow>
+			<handler type="URLMapper" />
+		</requestFlow>
+	</transport>
+
+</deployment>

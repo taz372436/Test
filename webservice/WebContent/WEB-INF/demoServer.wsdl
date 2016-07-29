@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://cn.com.demoServer" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://cn.com.demoServer" xmlns:intf="http://cn.com.demoServer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://cn.com.demoServer" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="testWebsServiceTwo">
+    <complexType>
+     <sequence>
+      <element name="RequestBeanWS" type="impl:RequestBeanWS"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="RequestBeanWS">
+    <sequence>
+     <element name="functionN" nillable="true" type="xsd:string"/>
+     <element name="others1" nillable="true" type="xsd:string"/>
+     <element name="others2" nillable="true" type="xsd:string"/>
+     <element name="others3" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+     <element name="requestID" nillable="true" type="xsd:string"/>
+     <element name="serviceN" nillable="true" type="xsd:string"/>
+     <element name="userCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="testWebsServiceTwoResponse">
+    <complexType>
+     <sequence>
+      <element name="out" type="impl:ResponseBeanWS"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ResponseBeanWS">
+    <sequence>
+     <element name="requestID" nillable="true" type="xsd:string"/>
+     <element name="returnCode" nillable="true" type="xsd:string"/>
+     <element name="returnFlag" type="xsd:int"/>
+     <element name="returnMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="testWebsServiceTwoRequest">
+
+      <wsdl:part element="impl:testWebsServiceTwo" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="testWebsServiceTwoResponse">
+
+      <wsdl:part element="impl:testWebsServiceTwoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="exUmServicePortType">
+
+      <wsdl:operation name="testWebsServiceTwo">
+
+         <wsdl:input message="impl:testWebsServiceTwoRequest" name="testWebsServiceTwoRequest"/>
+
+         <wsdl:output message="impl:testWebsServiceTwoResponse" name="testWebsServiceTwoResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="exUmServiceHttpPortSoapBinding" type="impl:exUmServicePortType">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="testWebsServiceTwo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="testWebsServiceTwoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="testWebsServiceTwoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="exUmService">
+
+      <wsdl:port binding="impl:exUmServiceHttpPortSoapBinding" name="exUmServiceHttpPort">
+
+         <wsdlsoap:address location="http://localhost:8080/webservice/services/demoServer"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
